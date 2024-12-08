@@ -7,19 +7,20 @@ dotenv.config();
 const port = process.env.PORT || 8080;
 
 const app = express();
+app.set("views", path.join(process.cwd(), "views"));
 app.set("view engine", "ejs");
 app.use(express.static("src"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
 
     var message;
 
     try {
         const name = req.query.name;
         const key = req.query.key;
-        const secrets = JSON.parse(fs.readFileSync("./secrets.json"));
+        const secrets = await JSON.parse(fs.readFile(path.join(process.cwd(), "src/data/secrets.json"), "utf8"));
         var friend = secrets[name].secret.friend;
         var hiddenKey = secrets[name].key;
 
