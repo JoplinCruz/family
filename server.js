@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
     try {
         const name = req.query.name;
         const key = req.query.key;
-        const secrets = JSON.parse(fs.readFileSync("secrets.json"));
+        const secrets = JSON.parse(fs.readFileSync("./secrets.json"));
         var friend = secrets[name].secret.friend;
         var hiddenKey = secrets[name].key;
 
