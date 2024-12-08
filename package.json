@@ -25,7 +25,8 @@
   "contributors": [],
   "scripts": {
     "dev": "node --watch --env-file=.env server.js",
-    "test": ""
+    "test": "",
+    "start": "node --env-file=.env server.js"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
