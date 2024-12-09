@@ -1,13 +1,14 @@
 
-const fs = require("fs");
 const express = require("express");
+const path = require("path");
+const fs = require("fs");
 
 const port = parseInt(process.env.PORT) || 8080;
 
 const app = express();
-app.set("views", "./public/views");
+app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "ejs");
-app.use(express.static("./public/src"));
+app.use(express.static(path.join(__dirname, "/public/src")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
     try {
         const name = req.query.name;
         const key = req.query.key;
-        const secrets = JSON.parse(fs.readFileSync("./public/src/data/secrets.json", "utf8"));
+        const secrets = JSON.parse(fs.readFileSync(path.join(__dirname, "/public/data/secrets.json"), "utf8"));
         var friend = secrets[name].secret.friend;
         var hiddenKey = secrets[name].key;
 
