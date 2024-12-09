@@ -1,26 +1,27 @@
-import dotenv from "dotenv";
-import fs from "fs";
-import express from "express";
+
+const dotenv = require("dotenv");
+const fs = require("fs");
+const express = require("express");
 
 dotenv.config();
 
 const port = process.env.PORT || 8080;
 
 const app = express();
-app.set("views", path.join(process.cwd(), "views"));
+app.set("views", "./views");
 app.set("view engine", "ejs");
-app.use(express.static("src"));
+app.use(express.static("./src"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
 
     var message;
 
     try {
         const name = req.query.name;
         const key = req.query.key;
-        const secrets = await JSON.parse(fs.readFile(path.join(process.cwd(), "src/data/secrets.json"), "utf8"));
+        const secrets = JSON.parse(fs.readFileSync("./src/data/secrets.json", "utf8"));
         var friend = secrets[name].secret.friend;
         var hiddenKey = secrets[name].key;
 
@@ -51,3 +52,5 @@ app.get("/", async (req, res) => {
 app.listen(port, () => {
     console.log("Server is listening...");
 });
+
+module.exports = app;

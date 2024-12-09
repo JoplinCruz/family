@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "type": "module",
+  "type": "commonjs",
   "license": "AGPL-version-3.0",
   "private": false,
   "engines": {
-    "node": ">= 14.0.0",
-    "npm": ">= 6.0.0"
+    "node": "^22.11.0",
+    "npm": "^10.9.0"
   },
   "homepage": "",
   "repository": {
@@ -18,15 +18,15 @@
   "bugs": "",
   "keywords": [],
   "author": {
-    "name": "",
+    "name": "Joplin Hendrix da Silva Cruz",
     "email": "joplin.da.cruz@gmail.com",
     "url": "https://github.com/JoplinCruz"
   },
   "contributors": [],
   "scripts": {
+    "start": "node --watch --env-file=.env server.js",
     "dev": "node --watch --env-file=.env server.js",
-    "test": "",
-    "start": "node --watch --env-file=.env server.js"
+    "test": ""
   },
   "dependencies": {
     "dotenv": "^16.4.7",
