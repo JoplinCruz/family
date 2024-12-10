@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
         res.render("index", { message, friend });
 
     } catch (error) {
-        message = "Erro no serviço, tente mais tarde...";
-        let friend = "";
+        message = "deseja a todos um...";
+        let friend = "Feliz Natal";
 
         console.error(error.message);
         res.render("index", { message, friend });
