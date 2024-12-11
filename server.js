@@ -35,14 +35,14 @@ app.get("/", (req, res) => {
             friend = "";
         }
 
-        res.render("index", { message, friend });
+        res.render("index", { message: message, friend: friend });
 
     } catch (error) {
         message = "deseja a todos um...";
-        let friend = "Feliz Natal";
+        let natal = "Feliz Natal";
 
         console.error(error.message);
-        res.render("index", { message, friend });
+        res.render("index", { message: message, friend: natal });
 
     }
 });
